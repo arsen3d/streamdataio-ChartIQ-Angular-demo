@@ -1,9 +1,10 @@
 <nav class="ciq-nav">
 	<div class="left">
-		<input id="symbolInput" placeholder="Set Symbol" type="text" [(ngModel)]="symbolInput"><button class="ciq symbol-btn" (click)=changeSymbol()></button>
+		<input id="symbolInput" placeholder="Set Symbol" type="text" [(ngModel)]="symbolInput" (keyup.enter)=changeSymbol()><button class="ciq symbol-btn" (click)=changeSymbol()></button>
+		<input id="symbolCompareInput" placeholder="Add Comparison" type="text" [(ngModel)]="symbolComparison" (keyup.enter)=addComparison()><button class="comparison-btn" (click)="addComparison()"></button>
 	</div>
 	<div class="right">
-		<menu-select class="ciq" id="periodicitySelect">
+		<menu-select id="periodicitySelect">
 			<span class="title">{{periodicity}}</span>
 			<menu-select-options class="menu-hover">
 				<menu-option *ngFor="#period of periodicityOptions" (click)="changePeriodicity(period.period, period.interval)">
@@ -11,7 +12,7 @@
 				</menu-option>
 			</menu-select-options>
 		</menu-select>
-		<menu-select class="ciq" id="chartTypeSelect">
+		<menu-select id="chartTypeSelect">
 			<span class="title">{{chartType}}</span>
 			<menu-select-options class="menu-hover">
 				<menu-option *ngFor="#type of chartTypes" (click)="changeChartType(type)">
@@ -19,7 +20,7 @@
 				</menu-option>
 			</menu-select-options>
 		</menu-select>
-		<menu-select class="ciq" id="studySelect">
+		<menu-select id="studySelect">
 			<span class="title">{{studies.selectedOption || "Add Study"}}</span>
 			<menu-select-options>
 				<menu-option *ngFor="#study of studies.list" (click)="studyDialog.addStudy(study, chartComponent.ciq)">
@@ -27,15 +28,14 @@
 				</menu-option>
 			</menu-select-options>
 		</menu-select>
-		<button class="ciq crosshair-btn" (click)="toggleCrosshairs()"></button>
 		<menu-select class="ciq" id="themeSelect">
 			<span class="title">Select Theme</span>
 			<menu-select-options class="menu-hover">
 				<menu-option *ngFor="#theme of themes" (click)="handleThemeSelect(theme)"><span>{{theme.name}}</span></menu-option>
 			</menu-select-options>
 		</menu-select>
-		<button class="ciq timezone-btn" (click)="timezoneDialog.launchTimezoneDialog(chartComponent.ciq)">Select Timezone</button>
-		<input id="symbolCompareInput" placeholder="Add Comparison" type="text" [(ngModel)]="symbolComparison"><button class="ciq comparison-btn" (click)="addComparison()"></button>
+		<button class="crosshair-btn" (click)="toggleCrosshairs()"></button>
+		<button class="timezone-btn" (click)="timezoneDialog.launchTimezoneDialog(chartComponent.ciq)"></button>
 	</div>
 </nav>
 <!-- The components -->
