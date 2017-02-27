@@ -9,7 +9,7 @@ declare var CIQ: any;
 
 @Component({
     selector: 'chart-ui',
-	styleUrls:['app/css/stylesheets/CIQ_Seed.css'],
+	styleUrls:['app/css/CIQ_Seed.css'],
     templateUrl: 'app/ui_component/ui.component.html',
 	directives:[ChartComponent, StudyDialog, ThemeDialog, TimezoneDialog, Colorpicker],
 	changeDetection: ChangeDetectionStrategy.OnPush,

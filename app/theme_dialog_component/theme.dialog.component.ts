@@ -5,7 +5,7 @@ declare var CIQ: any;
 
 @Component({
 	selector: 'theme-dialog',
-	styleUrls:['app/css/stylesheets/CIQ_Seed.css'],
+	styleUrls:['app/css/CIQ_Seed.css'],
 	templateUrl: 'app/theme_dialog_component/theme.dialog.component.html',
 	directives:[Colorpicker]
 })

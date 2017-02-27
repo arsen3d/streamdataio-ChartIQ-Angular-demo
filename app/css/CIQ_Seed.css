@@ -137,7 +137,7 @@ nav {
 	width: 27px;
 	right: 10px;
 	top: 1px;
-	background-image: url(../img/stx-sprite-ui.svg);
+	background-image: url(img/stx-sprite-ui.svg);
 	background-position: -45px -25px;
 	opacity: .6;
 	transition: opacity .20s 0s;
@@ -153,7 +153,7 @@ nav {
 	width: 27px;
 	right: 0px;
 	top: 1px;
-	background-image: url(../img/stx-sprite-ui.svg);
+	background-image: url(img/stx-sprite-ui.svg);
 	background-position: -443px -25px;
 	opacity: .6;
 	transition: opacity .20s 0s;
@@ -185,7 +185,7 @@ nav {
 .timezone-btn {
 	height: 27px;
 	width: 27px;
-	background-image: url(../img/ciq-timezone.svg);
+	background-image: url(img/ciq-timezone.svg);
 	background-size: 20px 20px;
 	background-repeat: no-repeat;
 	background-position: center;
@@ -225,7 +225,7 @@ nav {
 .crosshair-btn {
 	height: 27px;
 	width: 27px;
-	background-image: url(../img/stx-sprite-ui.svg);
+	background-image: url(img/stx-sprite-ui.svg);
 	background-position: -443px -25px;
 	opacity: .6;
 	transition: opacity .20s 0s;
@@ -332,7 +332,7 @@ cq-plus {
 cq-plus {
 	width: 27px;
 	height: 27px;
-	background-image: url(../img/stx-sprite-panels.svg);
+	background-image: url(img/stx-sprite-panels.svg);
 	background-position: -100px -25px;
 	opacity: .5;
 }
@@ -441,7 +441,7 @@ div.cq-close:after{
 	height: 25px;
 	content: "";
 	opacity: 0.5;
-	background-image: url(../img/stx-sprite-panels.svg);
+	background-image: url(img/stx-sprite-panels.svg);
 }
 div.cq-close{
 	float: right;
@@ -526,7 +526,7 @@ div.cq-close{
 }
 
 div.loader{
-	background-image: url(../img/loading-spin-white.svg);
+	background-image: url(img/loading-spin-white.svg);
 	display:block;
 	position: absolute;
 	height: 32px;
@@ -567,7 +567,7 @@ div.loader{
 	position: absolute;
 	right: 10px;
 	cursor: pointer;
-	background-image: url(../img/stx-sprite-panels.svg);
+	background-image: url(img/stx-sprite-panels.svg);
 	background-position: -250px -53px;
 	transform: scale(0.9);
 	margin-top:3px;
