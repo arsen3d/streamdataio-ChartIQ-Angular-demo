@@ -6,7 +6,7 @@ declare var $$$: any;
 
 @Component({
     selector: 'chart',
-    styleUrls: ['app/css/stylesheets/CIQ_Seed.css', 'app/css/stylesheets/CIQ_Demo.css'],
+    styleUrls: ['app/css/stylesheets/CIQ_Seed.css'],
     templateUrl: 'app/chart_component/chart.component.html',
     providers: [ChartService]
 })

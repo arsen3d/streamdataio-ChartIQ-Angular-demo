@@ -1,5 +1,6 @@
-<div class="ciq dialog-overlay" id="studyDialog" *ngIf="launchDialog | async">
-	<div class="ciq dialog">
+<div class="dialog-overlay" id="studyDialog" *ngIf="launchDialog | async">
+	<div class="dialog">
+		<div class="cq-close" (click)="closeMe();"></div>
 		<h3>{{studyName}}</h3>
 		<div id="inputs">
 			<div class="input dialog-item" *ngFor="#input of inputs | filterByPropertyPipe:{type: 'number'}">

@@ -1,5 +1,6 @@
-<div class="ciq dialog-overlay" *ngIf="launchDialog | async">
-	<div class="ciq dialog">
+<div class="dialog-overlay" *ngIf="launchDialog | async">
+	<div class="dialog">
+		<div class="cq-close" (click)="closeMe();"></div>
 		<h3>Custom Theme</h3>
 		<div class="candles">
 			<div class="dialog-item color">
@@ -45,7 +46,6 @@
 		<div class="dialog-item theme-save">
 			<input class="ciq" type="text" placeholder="Name Your Theme" [(ngModel)]="themeName">
 			<button class="pull-right ciq" (click)="closeMe(true);">Save</button>
-			<button class="pull-right ciq" (click)="closeMe();">Close</button>
 		</div>
 	</div>
 </div>

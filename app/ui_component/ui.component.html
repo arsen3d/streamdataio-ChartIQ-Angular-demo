@@ -1,7 +1,9 @@
 <nav class="ciq-nav">
 	<div class="left">
-		<input id="symbolInput" placeholder="Set Symbol" type="text" [(ngModel)]="symbolInput" (keyup.enter)=changeSymbol()><button class="ciq symbol-btn" (click)=changeSymbol()></button>
-		<input id="symbolCompareInput" placeholder="Add Comparison" type="text" [(ngModel)]="symbolComparison" (keyup.enter)=addComparison()><button class="comparison-btn" (click)="addComparison()"></button>
+		<span class="symbol-frame">
+			<input id="symbolInput" placeholder="Set Symbol" type="text" [(ngModel)]="symbolInput" (keyup.enter)=changeSymbol()><div class="symbol-btn" (click)=changeSymbol()></div>
+		</span>
+		<input id="symbolCompareInput" placeholder="Add Comparison" type="text" [(ngModel)]="symbolComparison" (keyup.enter)=addComparison()><div class="comparison-btn" (click)="addComparison()"></div>
 	</div>
 	<div class="right">
 		<menu-select id="periodicitySelect">

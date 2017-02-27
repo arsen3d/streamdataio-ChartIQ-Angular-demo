@@ -5,7 +5,7 @@ declare var CIQ: any;
 
 @Component({
 	selector: 'theme-dialog',
-	styleUrls:['app/css/stylesheets/CIQ_Seed.css', 'app/css/stylesheets/CIQ_Demo.css'],
+	styleUrls:['app/css/stylesheets/CIQ_Seed.css'],
 	templateUrl: 'app/theme_dialog_component/theme.dialog.component.html',
 	directives:[Colorpicker]
 })
@@ -94,6 +94,7 @@ export class ThemeDialog{
 	launchColorpicker(setting, event){
 		this.activeOutput['div']=event.target;
 		this.launchColorpickerEvent.emit({
+			component:this,
 			swatch: event.target,
 			setting:setting
 		});
