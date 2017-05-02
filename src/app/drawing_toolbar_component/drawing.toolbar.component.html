@@ -24,5 +24,21 @@
 				</menu-select-options>
 			</menu-select>
 		</div>
+		<div *ngIf="fontSize && fontFamily">
+			<div class="italicBtn" (click)="toggleStyle('italic')" style="font-style:italic">I</div>
+			<div class="boldBtn" (click)="toggleStyle('bold')" style="font-weight:bold">B</div>
+			<menu-select id="fontSizeSelect">
+				<span class="title">{{fontSize}}</span>
+				<menu-select-options class="menu-hover">
+					<menu-option class="option" *ngFor="let option of fontSizeOptions" (click)="setFontSize(option)"><span>{{option}}</span></menu-option>
+				</menu-select-options>
+			</menu-select>
+			<menu-select id="fontFamilySelect">
+				<span class="title">{{fontFamily}}</span>
+				<menu-select-options class="menu-hover">
+					<menu-option class="option" *ngFor="let option of fontFamilyOptions" (click)="setFontFamily(option)"><span>{{option}}</span></menu-option>
+				</menu-select-options>
+			</menu-select>
+		</div>
 	</div>
 </div>
