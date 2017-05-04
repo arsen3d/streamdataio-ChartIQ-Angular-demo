@@ -24,7 +24,7 @@
 				</menu-select-options>
 			</menu-select>
 		</div>
-		<div *ngIf="fontSize && fontFamily">
+		<div *ngIf="selectedTool=='Callout' || selectedTool=='Annotation'">
 			<div class="italicBtn" (click)="toggleStyle('italic')" style="font-style:italic">I</div>
 			<div class="boldBtn" (click)="toggleStyle('bold')" style="font-weight:bold">B</div>
 			<menu-select id="fontSizeSelect">
