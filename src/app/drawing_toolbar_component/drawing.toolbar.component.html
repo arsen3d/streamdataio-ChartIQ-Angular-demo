@@ -25,8 +25,8 @@
 			</menu-select>
 		</div>
 		<div *ngIf="selectedTool=='Callout' || selectedTool=='Annotation'">
-			<div class="italicBtn" (click)="toggleStyle('italic')" style="font-style:italic">I</div>
-			<div class="boldBtn" (click)="toggleStyle('bold')" style="font-weight:bold">B</div>
+			<div class="italicBtn" (click)="toggleStyle('italic')">I</div>
+			<div class="boldBtn" (click)="toggleStyle('bold')">B</div>
 			<menu-select id="fontSizeSelect">
 				<span class="title">{{fontSize}}</span>
 				<menu-select-options class="menu-hover">
@@ -36,7 +36,7 @@
 			<menu-select id="fontFamilySelect">
 				<span class="title">{{fontFamily}}</span>
 				<menu-select-options class="menu-hover">
-					<menu-option class="option" *ngFor="let option of fontFamilyOptions" (click)="setFontFamily(option)"><span>{{option}}</span></menu-option>
+					<menu-option class="option" *ngFor="let option of fontFamilyOptions" (click)="setFontFamily(option)"><span [style.font-family]="option">{{option}}</span></menu-option>
 				</menu-select-options>
 			</menu-select>
 		</div>

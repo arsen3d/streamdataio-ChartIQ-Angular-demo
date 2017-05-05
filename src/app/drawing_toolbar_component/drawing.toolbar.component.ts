@@ -27,8 +27,9 @@ export class DrawingToolbar{
   fontFamily:any="Helvetica"; //defaults
   fontSizeOptions:any=[8, 10, 12, 13, 14, 16, 20, 28, 36, 48, 64];
   fontFamilyOptions:any=["Helvetica", "Courier", "Garamond", "Palatino", "Times New Roman"];
-  bold:any="normal";
-  italic:any="normal";
+  bold:boolean=false;
+  italic:boolean=false;
+  showFontOptions:boolean=false;
   @Output() launchToolbar=new EventEmitter<any>();
   @Output() launchColorpickerEvent=new EventEmitter<any>();
 
@@ -82,17 +83,16 @@ export class DrawingToolbar{
       var size = style.fontSize;
       this.ciq.currentVectorParameters.annotation.font.size=size;
       this.fontSize = size;
-
       this.ciq.currentVectorParameters.annotation.font.family=style.fontFamily;
       this.fontFamily = style.fontFamily;
-
       this.ciq.currentVectorParameters.annotation.font.style=style.fontStyle;
-      this.italic=style.fontStyle;
-
       this.ciq.currentVectorParameters.annotation.font.weight=style.fontWeight;
-      this.bold=style.fontWeight;
-    }
 
+      this.showFontOptions=true;
+    }
+    else{
+      this.showFontOptions=false;
+    }
     this.fillColor=this.toolParams.fillColor;
     if(this.toolParams.color=="auto") this.lineColor="white";
     else this.lineColor=this.toolParams.color;
@@ -149,23 +149,23 @@ export class DrawingToolbar{
 
   toggleStyle(newStyle){
     if(newStyle=='bold'){
-      if(this.bold=="normal"){
+      if(!this.bold){
         this.ciq.changeVectorParameter("fontWeight", "bold");
-        this.bold="bold";
+        this.bold=true;
       }
       else{
         this.ciq.changeVectorParameter("fontWeight", "normal");
-        this.bold="normal";
+        this.bold=false;
       }
     }
     else if(newStyle=='italic'){
-      if(this.italic=="normal"){
+      if(!this.italic){
         this.ciq.changeVectorParameter("fontStyle", "italic");
-        this.italic="italic";
+        this.italic=true;
       }
       else{
         this.ciq.changeVectorParameter("fontStyle", "normal");
-        this.italic="normal";
+        this.italic=false;
       }
     }
   }
