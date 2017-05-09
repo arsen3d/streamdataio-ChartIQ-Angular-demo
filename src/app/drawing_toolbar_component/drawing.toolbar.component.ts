@@ -23,6 +23,13 @@ export class DrawingToolbar{
   lineWidth:any;
   pattern:any;
   selectedLineClass:any;
+  fontSize:any=13;
+  fontFamily:any="Helvetica"; //defaults
+  fontSizeOptions:any=[8, 10, 12, 13, 14, 16, 20, 28, 36, 48, 64];
+  fontFamilyOptions:any=["Helvetica", "Courier", "Garamond", "Palatino", "Times New Roman"];
+  bold:boolean=false;
+  italic:boolean=false;
+  showFontOptions:boolean=false;
   @Output() launchToolbar=new EventEmitter<any>();
   @Output() launchColorpickerEvent=new EventEmitter<any>();
 
@@ -68,6 +75,24 @@ export class DrawingToolbar{
     // Set all the info for the toolbar
     this.selectedTool=TitlecasePipe.prototype.transform(tool);
     this.toolParams = CIQ.Drawing.getDrawingParameters(this.ciq, tool);
+
+    if(tool=='callout' || tool=='annotation') { // no need to do this every time
+      // Sync the defaults for font tool
+      var style = this.ciq.canvasStyle("stx_annotation");
+
+      var size = style.fontSize;
+      this.ciq.currentVectorParameters.annotation.font.size=size;
+      this.fontSize = size;
+      this.ciq.currentVectorParameters.annotation.font.family=style.fontFamily;
+      this.fontFamily = style.fontFamily;
+      this.ciq.currentVectorParameters.annotation.font.style=style.fontStyle;
+      this.ciq.currentVectorParameters.annotation.font.weight=style.fontWeight;
+
+      this.showFontOptions=true;
+    }
+    else{
+      this.showFontOptions=false;
+    }
     this.fillColor=this.toolParams.fillColor;
     if(this.toolParams.color=="auto") this.lineColor="white";
     else this.lineColor=this.toolParams.color;
@@ -103,12 +128,45 @@ export class DrawingToolbar{
     }
   };
 
-  setLinePattern=function(newClass, newWidth, newPattern){
+  setLinePattern(newClass, newWidth, newPattern){
     // Set the info for the toolbar menu
     this.selectedLineClass=newClass;
     // Activate the new parameters
     this.ciq.changeVectorParameter("lineWidth", newWidth);
     this.ciq.changeVectorParameter("pattern", newPattern);
-  }
+  };
 
+  setFontSize(newSize){
+    this.fontSize=newSize+'px';
+    this.ciq.changeVectorParameter("fontSize", newSize+'px');
+  };
+
+
+  setFontFamily(newFamily){
+    this.fontFamily=newFamily;
+    this.ciq.changeVectorParameter("fontFamily", newFamily);
+  };
+
+  toggleStyle(newStyle){
+    if(newStyle=='bold'){
+      if(!this.bold){
+        this.ciq.changeVectorParameter("fontWeight", "bold");
+        this.bold=true;
+      }
+      else{
+        this.ciq.changeVectorParameter("fontWeight", "normal");
+        this.bold=false;
+      }
+    }
+    else if(newStyle=='italic'){
+      if(!this.italic){
+        this.ciq.changeVectorParameter("fontStyle", "italic");
+        this.italic=true;
+      }
+      else{
+        this.ciq.changeVectorParameter("fontStyle", "normal");
+        this.italic=false;
+      }
+    }
+  }
 }
