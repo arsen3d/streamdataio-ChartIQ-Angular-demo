@@ -6,7 +6,9 @@ import {TimezoneDialog} from '../timezone_dialog_component/timezone.dialog.compo
 import {Colorpicker} from '../colorpicker_component/colorpicker'
 import {OverlayMenu} from '../overlay_menu_component/overlay.menu'
 
+import * as _exports from '../../chartiq_library/js/chartiq';
 declare var CIQ: any;
+var CIQ = _exports.CIQ;
 
 @Component({
     selector: 'chart-ui',
