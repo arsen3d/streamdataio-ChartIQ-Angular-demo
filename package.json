@@ -5,7 +5,8 @@
   "scripts": {
     "build": "webpack --progress",
     "server": "webpack-dev-server --inline --progress --port 3000 --content-base src",
-    "start": "npm run server"
+    "start": "npm run server",
+    "test": "npm run build"
   },
   "engineStrict": true,
   "engines": {
