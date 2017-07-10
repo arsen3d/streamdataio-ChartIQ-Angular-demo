@@ -1,6 +1,7 @@
 import {Component, Output, EventEmitter} from '@angular/core'
 
-declare var CIQ: any;
+import * as _exports from '../../chartiq_library/js/chartiq';
+var CIQ = _exports.CIQ;
 
 @Component({
   selector: 'timezone-dialog',

@@ -1,4 +1,6 @@
-declare var CIQ: any;
+import * as _exports from '../../chartiq_library/js/chartiq';
+import '../../chartiq_library/js/quoteFeedSamples'
+var CIQ = _exports.CIQ;
 
 export class ChartService{
 
