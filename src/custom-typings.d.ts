@@ -28,3 +28,5 @@ import * as _ from 'lodash'
  * see https://github.com/typings/registry
  *
  */
+declare var CIQ: any;
+declare var $$$: any;

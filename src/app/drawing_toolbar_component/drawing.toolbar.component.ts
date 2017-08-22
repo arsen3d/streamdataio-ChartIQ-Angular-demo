@@ -1,8 +1,8 @@
 import {Component, Output, EventEmitter} from '@angular/core'
 import {TitlecasePipe} from '../pipes/title.case.pipe'
 
-import * as _exports from '../../chartiq_library/js/chartiq';
-var CIQ = _exports.CIQ;
+// import * as _exports from '../../chartiq_library/js/chartiq';
+// var CIQ = _exports.CIQ;
 
 @Component({
   selector: 'drawing-toolbar',
