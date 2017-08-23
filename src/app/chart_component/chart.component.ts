@@ -25,7 +25,7 @@ export class ChartComponent implements OnInit {
     this.ciq = new CIQ.ChartEngine({ container: $$$("#chartContainer")});
     this.ciq.setPeriodicityV2(1, 5);
     this.chartService.attachQuoteFeed(this.ciq);
-    this.ciq.newChart("IBM");
+    this.ciq.newChart("GOOGL");
   }
 
   // https://angular.io/docs/ts/latest/api/core/index/OnDestroy-class.html
