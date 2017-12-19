@@ -29,13 +29,14 @@ export class ChartUI implements AfterViewChecked {
   constructor(private zone: NgZone){
     this.periodicity="5 min";
     this.chartType="candle";
+    this.symbolInput="Google"
   }
   ngAfterViewChecked(){
     this.chartLayout=this.getChartLayout();
   }
-  changeSymbol() {
-    this.chartComponent.ciq.newChart(this.symbolInput, this.chartComponent.sampleData);
-    this.symbolInput='';
+  changeSymbol(ticker,symbolLabel) {
+      this.chartComponent.ciq.newChart(ticker, this.chartComponent.sampleData);
+      this.symbolInput=symbolLabel;
   }
   changePeriodicity(period, interval){
     this.chartComponent.ciq.setPeriodicityV2(period,interval);
@@ -148,6 +149,45 @@ export class ChartUI implements AfterViewChecked {
       }
   },
     {"name":"+ New Theme"}];
+
+    symbolOptions: Array<any> = [
+      {
+        label: 'Google',
+        ticker: 'GOOGL',
+      },
+      {
+        label: 'Microsoft',
+        ticker: 'MSFT',
+      },
+      {
+        label: 'Alibaba',
+        ticker: 'BABA',
+      },
+      {
+        label: 'Netflix',
+        ticker: 'NFLX',
+      },
+      {
+        label: 'Baidu',
+        ticker: 'BIDU',
+      },
+      {
+        label: 'Tesla',
+        ticker: 'TSLA',
+      },
+      {
+        label: 'Amazon',
+        ticker: 'AMZN',
+      },
+      {
+        label: 'Facebook',
+        ticker: 'FB',
+      },
+      {
+        label: 'Apple',
+        ticker: 'AAPL',
+      },
+      ]
 
     periodicityOptions: Array<any> = [
       {

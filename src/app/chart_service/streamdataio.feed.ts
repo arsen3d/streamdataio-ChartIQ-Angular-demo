@@ -1,4 +1,4 @@
-import {StreamData, StreamDataIo, StreamDataServer} from 'streamdataio-js-sdk';
+      import {StreamData, StreamDataIo, StreamDataServer} from 'streamdataio-js-sdk';
 import {applyPatch} from 'fast-json-patch';
 
 export abstract class StreamDataIoFeed {

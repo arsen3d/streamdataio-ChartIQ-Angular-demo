@@ -36,6 +36,7 @@
     "zone.js": "^0.8.1"
   },
   "devDependencies": {
+    "@angular/cli": "^1.6.1",
     "@types/node": "^7.0.8",
     "angular2-router-loader": "^0.3.5",
     "angular2-template-loader": "^0.6.2",
