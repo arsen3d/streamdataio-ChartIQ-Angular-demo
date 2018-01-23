@@ -17,7 +17,7 @@ export class ChartService {
 export class StockMarketFeed extends StreamDataIoFeed {
 
   constructor(chart) {
-    super(chart, "http://stockmarket.streamdata.io/v2/prices", "YjA2YTBlZjktYWZmOC00YzQxLTkwZTYtNWJlNGE1YWVjNzBl");
+    super(chart, "http://stockmarket.streamdata.io/v2/prices", "ZjM3YTkzNzktYmRkOC00OWM3LWI0MGUtMzc3ZTIyYjlkMzBi");
   }
 
   public fetchInitialData(symbol, startDate, endDate, params, cb) {
