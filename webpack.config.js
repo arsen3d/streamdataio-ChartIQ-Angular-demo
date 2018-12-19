@@ -62,7 +62,8 @@ var defaultConfig = {
     modules: [
       path.resolve(__dirname, 'node_modules'),
       path.resolve(__dirname, 'src', 'chartiq_library', 'js'),
-      './src/chartiq_library/js/'
+      './src/chartiq_library/js/',
+      './src/chartiq_library/js/thirdparty/'
       // path.resolve(__dirname, 'src', 'chartiq_library', 'css')
     ],
     alias: {

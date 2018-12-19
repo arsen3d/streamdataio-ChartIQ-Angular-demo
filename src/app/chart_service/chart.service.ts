@@ -14,50 +14,60 @@ export class ChartService {
   }
 }
 
+function generateUUID(){
+	var d = new Date().getTime();
+	if(window.performance && typeof window.performance.now === "function"){
+		d += window.performance.now(); //use high-precision timer if available
+	}
+	var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+		var r = (d + Math.random()*16)%16 | 0;
+		d = Math.floor(d/16);
+		return (c=='x' ? r : (r&0x3|0x8)).toString(16);
+	});
+  return uuid;
+}
+
 export class StockMarketFeed extends StreamDataIoFeed {
 
   constructor(chart) {
     super(chart, "http://stockmarket.streamdata.io/v2/prices", "<YOUR STREAMDATA TOKEN>");
   }
 
-  public fetchInitialData(symbol, startDate, endDate, params, cb) {
 
-    if (symbol || symbol === "") {
-      symbol = symbol.toUpperCase();
-    } else {
-      cb({quotes: [], moreAvailable: false});  //short circuit ajax request
-      return;
-    }
-    if (symbol.charAt(0) != "^" && CIQ.Market.Symbology.isForexSymbol(symbol)) symbol = "^" + symbol;
-    let url = "https://demoquotes.chartiq.com/" + symbol.replace(/\//g, "-");
-    let that = this;
-    CIQ.postAjax(url, null, function (status, response) {
-      if (status != 200) {
-        cb({error: status});
-        return;
+  public fetchInitialData(symbol, startDate, endDate, params, cb) {
+    var guid = generateUUID();
+    var queryUrl = "https://simulator.chartiq.com/datafeed?session=" + guid +
+		"&identifier=" + symbol +
+		"&startdate=" + startDate.toISOString()  +
+		"&enddate=" + endDate.toISOString()  +
+		"&interval=" + params.interval +
+		"&period=" + params.period +
+     "&extended=" + (params.stx.extendedHours?1:0);   // using filter:true for after hours
+  let that = this;
+	CIQ.postAjax(queryUrl, null, function(status, response){
+		// process the HTTP response from the datafeed
+		if(status==200){ // if successful response from datafeed
+      var feeddata=JSON.parse(response);
+      var newQuotes=[];
+      for(var i=0;i<feeddata.length;i++){
+        newQuotes[i]={};
+        newQuotes[i].DT=new Date(feeddata[i].DT); // DT is a string in ISO format, make it a Date instance
+        newQuotes[i].Open=feeddata[i].Open;
+        newQuotes[i].High=feeddata[i].High;
+        newQuotes[i].Low=feeddata[i].Low;
+        newQuotes[i].Close=feeddata[i].Close;
+        newQuotes[i].Volume=feeddata[i].Volume;
       }
-      let quotes = that._extractQuotes(response);
-      let newQuotes = [];
-      for (let i = 0; i < quotes.length; i++) {
-        newQuotes[i] = {};
-        newQuotes[i].Date = quotes[i][0]; // Or set newQuotes[i].DT if you have a JS Date
-        newQuotes[i].Open = quotes[i][1];
-        newQuotes[i].High = quotes[i][2];
-        newQuotes[i].Low = quotes[i][3];
-        newQuotes[i].Close = quotes[i][4];
-        newQuotes[i].Volume = quotes[i][5];
-        newQuotes[i].Adj_Close = quotes[i][6];
-      }
-      params.noUpdate = true;   //Daily demo quotes do not support updates
-      cb({quotes: newQuotes, moreAvailable: false, attribution: {source: "demoquotes", exchange: "RANDOM"}}); // set moreAvailable to true so that the chart will request more when scrolling into the past. Set to false if at the end of data.
-    });
+			cb({quotes:newQuotes, attribution:{source:"simulator", exchange:"RANDOM"}}); // return the fetched data; init moreAvailable to enable pagination
+		} else { // else error response from datafeed
+			cb({error:(response?response:status)});	// specify error in callback
+		}
+	});
   }
 
   private _extractQuotes(response) {
-    let varName = response.substr(0, response.indexOf("="));
-    let valueToParse = response.substring(response.indexOf(varName + "=") + (varName + "=").length, response.length - 1);
     try {
-      return JSON.parse(valueToParse.replace(/,0+/g, ",0").replace(/,[.]/g, ",0.").replace(/;/g, ""));
+      return JSON.parse(response);
     } catch (e) {
       return [];
     }
