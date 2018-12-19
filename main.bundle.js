@@ -28245,7 +28245,7 @@ function generateUUID() {
 var StockMarketFeed = /** @class */ (function (_super) {
     __extends(StockMarketFeed, _super);
     function StockMarketFeed(chart) {
-        return _super.call(this, chart, "http://stockmarket.streamdata.io/v2/prices", "ZjM3YTkzNzktYmRkOC00OWM3LWI0MGUtMzc3ZTIyYjlkMzBi") || this;
+        return _super.call(this, chart, "http://35.195.161.13:8080/app/statuscode/simulate/chartiq", "ZjM3YTkzNzktYmRkOC00OWM3LWI0MGUtMzc3ZTIyYjlkMzBi") || this;
     }
     StockMarketFeed.prototype.fetchInitialData = function (symbol, startDate, endDate, params, cb) {
         var guid = generateUUID();
@@ -28287,13 +28287,17 @@ var StockMarketFeed = /** @class */ (function (_super) {
         }
     };
     StockMarketFeed.prototype.buildSymbolUrl = function (serviceUrl, symbol) {
-        return serviceUrl + "/" + symbol;
+        return "" + serviceUrl;
     };
     StockMarketFeed.prototype.formatLastQuote = function (symbol, quote) {
+        var i = 0;
+        while (quote[i].ticker != symbol) {
+            i++;
+        }
         return {
-            Last: quote.last,
-            Volume: quote.volume,
-            DT: new Date(quote.dt)
+            Last: quote[i].last,
+            Volume: quote[i].volume,
+            DT: new Date().getTime()
         };
     };
     return StockMarketFeed;
