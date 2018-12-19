@@ -30,7 +30,7 @@ function generateUUID(){
 export class StockMarketFeed extends StreamDataIoFeed {
 
   constructor(chart) {
-    super(chart, "http://stockmarket.streamdata.io/v2/prices", "<YOUR STREAMDATA TOKEN>");
+    super(chart, "http://35.195.161.13:8080/app/statuscode/simulate/chartiq", "<YOUR STREAMDATA TOKEN>");
   }
 
 
@@ -74,14 +74,18 @@ export class StockMarketFeed extends StreamDataIoFeed {
   }
 
   protected buildSymbolUrl(serviceUrl: string, symbol: string) {
-    return `${serviceUrl}/${symbol}`;
+    return `${serviceUrl}`;
   }
 
   protected  formatLastQuote(symbol, quote): any {
+    var i = 0;
+    while(quote[i].ticker != symbol) {
+      i++;
+    }
     return {
-      Last: quote.last,
-      Volume: quote.volume,
-      DT: new Date(quote.dt)
+      Last: quote[i].last,
+      Volume: quote[i].volume,
+      DT: new Date().getTime()
     };
   }
 
